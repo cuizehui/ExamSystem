@@ -144,7 +144,7 @@ public class GradeDBManager {
 	public  ResultSet  selectbydata(String startTime,String endTime){
 		ResultSet resultset=null;
 		String selectBydataSQL="SELECT * FROM grade_manager_db.grade_table_reset  where DATE_FORMAT(grade_table_reset.current_time,'%Y-%M-%d')>=DATE_FORMAT('"+startTime+"','%Y-%M-%d') and DATE_FORMAT(grade_table_reset.current_time,'%Y-%M-%d')<=DATE_FORMAT('"+endTime+"','%Y-%M-%d');";
-		System.out.println(selectBydataSQL);
+//		System.out.println(selectBydataSQL);
 		try {
 			 resultset=stmt.executeQuery(selectBydataSQL);
 			 
@@ -157,5 +157,15 @@ public class GradeDBManager {
 		
 		
 	}
-
+	
+	public boolean deletBynumber(String jobnumber) throws SQLException {
+		String deletSQL="delete FROM "+DBString.DBNAME+"."+DBString.DB_grade_table_NAME+" where jobnumber="+jobnumber+";";
+	//	System.out.println(deletSQL);
+		 int result=stmt.executeUpdate(deletSQL);
+//		 System.out.println(result);
+		 if(result==1) {
+			 return true;
+		 }
+		 return false;
+	}
 }

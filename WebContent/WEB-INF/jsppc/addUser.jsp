@@ -7,13 +7,13 @@ import="com.alibaba.fastjson.JSONObject"
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/my.css"  rel="stylesheet"> 
 </head>
+<script type="text/javascript" src="js/select.js"></script>
 <body>
 
 
-
-
-<form action="login" method="GET">
+<form action="InsertSlt" method="GET">
 <div>
 工  号：<input type="text" name="jobnumber">
 姓  名：  <input type="text" name="name" />
@@ -22,52 +22,39 @@ import="com.alibaba.fastjson.JSONObject"
 </form>
 
 	
-		
-		
-		<%
-		JSONArray jsonarray= (JSONArray)request.getAttribute("jsonArray");
-		 String exception=(String)request.getAttribute("exception");
-		if(exception!=null){
-		    out.println(exception);
-		}
-		else{
+		<script  type="text/javascript">
+	
+		var jsonarray= ${jsonArray}
+	  	var exception=${empty  exception}
+				if(exception){
+					document.write("true");
+					if(jsonarray.length>0){
+						document.write('<table width="100%" height="100" border="1" cellpadding="0" cellspacing="1"  align="center"  bgcolor="CCE8CF"> <tr align="center"> <th>姓名</th> <th>工号</th> <th>插入结果</th> </tr> ');
+							for(var i=0;i<jsonarray.length;i++){
+								document.write("<tr>");
+								alert(jsonarray[i].name);
+								document.write("<td>"+jsonarray[i].name+"</td>");
+								document.write("<td>"+jsonarray[i].jobnumber+"</td>");
+								document.write("<td>"+jsonarray[i].result+"</td>");
+								document.write("</tr>");
+							}
+							document.write("</table>");
+						}
+				
+					
+				}
+				else{
+					var str="${exception}"
+					document.write('<table width="100%" height="100" border="1" cellpadding="0" cellspacing="1"  align="center"  bgcolor="CCE8CF"> <tr align="center"> <th>失败原因</th>  </tr> ');
+					document.write("<tr>");
+					document.write("<td>"+str+"</td>");
+					document.write("</tr>");
+					document.write("</table>");
+				}
+				
 			
-				if(jsonarray!=null){
 		
-					if(jsonarray.size()>0){
-						%>
-						<table width="100%" height="100" border="1" cellpadding="0" cellspacing="1"  align="center"  bgcolor="CCE8CF">
-						<tr align="center">
-						<th>姓名</th>
-						<th>工号</th>
-						<th>插入结果</th>
-							
-						</tr>
-						<%	
-						  for(int i=0;i<jsonarray.size();i++){
-						    JSONObject jsonob = jsonarray.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
-		%>
-		
-			<tr align="center">
-			<td><%= jsonob.get("name") %></td>
-			<td><%= jsonob.get("jobnumber") %></td>
-			<td><%= jsonob.get("result") %></td>
-			</tr>
-	
-	
-		<%					  
-				  }	
-					%>
-						</table>
-					<%
-				}		
-			}
-		}
-	%>
-	
-
-
-
+		</script>	
 
 </body>
 </html>

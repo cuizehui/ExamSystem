@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ import dao.GradeDBManager;
 import dao.GradeDBuitl;
 
 /**
- * Servlet implementation class selectSlt
+ * 根据日期查询 servlet
  */
 @WebServlet("/selectSlt")
 public class selectSlt extends HttpServlet {
@@ -94,8 +95,8 @@ public class selectSlt extends HttpServlet {
 						String name = rs.getString("name");
 				       String jobnumber = rs.getString("jobnumber");
 				       String grade=rs.getString("grade");
-				         Date timedata = rs.getDate("current_time");
-				        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+				       Timestamp timedata = rs.getTimestamp("current_time");
+				        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				        String time=simpleDateFormat.format(timedata);
 				        
 				       JSONObject json=new JSONObject();
