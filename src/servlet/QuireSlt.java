@@ -119,7 +119,7 @@ public class QuireSlt extends HttpServlet {
 			         Timestamp timedata = rs.getTimestamp("current_time");
 			        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			        String time=simpleDateFormat.format(timedata);
-			        System.out.println(time);
+			//        System.out.println(time);
 			       JSONObject json=new JSONObject();
 			       json.put("name", name);
 			       json.put("jobnumber", jobnumber);

@@ -52,8 +52,7 @@ $(function(){
 </head>
 
 <body style="background:#f0f9fd;">
-	<div class="lefttop"><span></span>通讯录</div>
-    
+
     <dl class="leftmenu">
         
     <dd>
@@ -63,7 +62,6 @@ $(function(){
     	<ul class="menuson">
         <li><cite></cite><a href="${pageContext.request.contextPath}/QuireSlt?type=1" target="rightFrame">成绩查询</a><i></i></li>
       	 <li><cite></cite><a href="imgtable.html" target="rightFrame">成绩修改</a><i></i></li>
-        <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i></i></li>
         <li><cite></cite><a href="imglist.html" target="rightFrame">成绩打印</a><i></i></li>
       
         </ul>    
@@ -84,12 +82,10 @@ $(function(){
 
     
     
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>日期管理</div>
+    <dd><div class="title"><span><img src="images/leftico04.png" /></span>管理</div>
     <ul class="menuson">
         <li><cite></cite><a href="#">自定义</a><i></i></li>
-        <li><cite></cite><a href="#">常用资料</a><i></i></li>
-        <li><cite></cite><a href="#">信息列表</a><i></i></li>
-        <li><cite></cite><a href="#">其他</a><i></i></li>
+       
     </ul>
     
     </dd>   
