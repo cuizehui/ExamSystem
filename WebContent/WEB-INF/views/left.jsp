@@ -82,10 +82,11 @@ $(function(){
 
     
     
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>管理</div>
+    <dd><div class="title"><span><img src="images/leftico04.png" /></span>考题管理</div>
     <ul class="menuson">
-        <li><cite></cite><a href="#">自定义</a><i></i></li>
-       
+        <li><cite></cite><a href="${pageContext.request.contextPath}/AddExamFileDispatcher" target="rightFrame">考题上传</a><i></i></li>
+       	<li><cite></cite><a href="#">考题查看</a><i></i></li>
+       	<li><cite></cite><a href="#">考题修改</a><i></i></li>
     </ul>
     
     </dd>   
