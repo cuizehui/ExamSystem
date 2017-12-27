@@ -7,24 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<form action="DeleteSlt" method="Get">
-<div>
-工 号 <input  name="jobnumber"  type="text"  > 
- <input type="submit" value="提交" />
-</div>
-</form>
-
-<script type="text/javascript">
-	  if(${empty jsonarray}){
-	  }
-	  else{
-		  var ja= ${jsonarray};
-		  document.write("<tr>"+ja[0].result+"</tr>"); 
-		  
-	  }
-	  
-</script>
-
+${jsonarray}
 </body>
 </html>

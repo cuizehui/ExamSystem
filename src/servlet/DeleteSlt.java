@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -19,30 +20,22 @@ import dao.GradeDBuitl;
  * Servlet implementation class deleteSlt
  */
 @WebServlet("/DeleteSlt")
-public class DeleteSlt extends HttpServlet {
+public class DeleteSlt extends BaseServlet{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteSlt() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	JSONArray jsonarray;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+	@Override
+	protected void doCommentGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
 		String jobnumber=(String) request.getParameter("jobnumber");
 		
 		GradeDBManager gdbManager=new GradeDBManager( GradeDBuitl.getConnect());
-		try {
-			
+		try {	
 				boolean result =gdbManager.deletBynumber(jobnumber);
+				jsonarray=new JSONArray();
 				JSONObject jsonobject=new JSONObject();
-				JSONArray jsonarray=new JSONArray();
 				if(result) {
 					jsonobject.put("result", "ok");
 				}
@@ -50,7 +43,7 @@ public class DeleteSlt extends HttpServlet {
 					jsonobject.put("result","nok");
 				}
 				jsonarray.add(jsonobject);
-				request.setAttribute("jsonarray", jsonarray);
+				
 				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,15 +51,35 @@ public class DeleteSlt extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("exception", e.getMessage());
 		}
-		request.getRequestDispatcher("WEB-INF/jsppc/deletUser.jsp").forward(request, response);
+			
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doAndroidGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("doandroidget");
+		response.setCharacterEncoding("utf8");
+	     response.setContentType("text/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+	    System.out.println(jsonarray.toString());
+	     out.write(jsonarray.toString());
+	     out.close();
+	}
+
+	@Override
+	protected void doWebGet(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		try {
+			request.setAttribute("jsonarray", jsonarray);
+			System.out.println("helloword");
+			request.getRequestDispatcher("WEB-INF/jsppc/deletUser.jsp").forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

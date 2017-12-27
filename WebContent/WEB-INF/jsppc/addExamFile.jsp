@@ -19,11 +19,8 @@
 				type="file" name="filename"> <input type="submit"
 				value="Submit" />
 			</span>
-
-			
-
-
 		</form>
+		
 		<div class="place">
 			<span>位置：</span>
 			<ul class="placeul">
@@ -32,7 +29,6 @@
 				<li><a href="#">列表</a></li>
 			</ul>
 		</div>
-
 
 		<table class="filetable" id="">
 
@@ -48,25 +44,16 @@
 
 			<tbody>
 				<c:forEach items="${files }" var="file">
-					<tr>
-						<td><img src="images/f01.png" />${file}</td>
+					<tr >
+						<td  > <a  href="FormatExamSlt?filename=${file}" ><img  src="images/f06.png" />${file}</a></td>
 						<td>2013/10/14 17:38</td>
-						<td>文件夹</td>
-						<td class="tdlast">0 KB</td>
+						<td>文件</td>
+						<td class="tdlast" >0 KB</td>
 						<td></td>
-					</tr>
-				</c:forEach>
-				
+					</tr>			
+				</c:forEach>			
 			</tbody>
-
-
-
-
 		</table>
-
-
-
 	</div>
-
 </body>
 </html>

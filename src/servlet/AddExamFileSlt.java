@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.Enumeration;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -57,8 +58,6 @@ public class AddExamFileSlt extends HttpServlet {
 		 request.setCharacterEncoding("utf-8");
          response.setCharacterEncoding("utf-8");
          response.setContentType("text/html;charset=utf-8");
-         
-     
         
          Enumeration<String> heads = request.getHeaderNames();  
          while (heads.hasMoreElements()) {  
@@ -68,22 +67,28 @@ public class AddExamFileSlt extends HttpServlet {
         
          //获取文件
          Part part = request.getPart("filename");  
-        
          
-         Collection<String> headerNames = part.getHeaderNames();    
+        Collection<String> headerNames = part.getHeaderNames();    
          for (String header : headerNames) {  
              System.out.println(header + "=" + part.getHeader(header));  
-         }  
-         copyfile(part);
+         }
+         
+         ///home/cuizehui/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ExamSystems/
+         String path = request.getServletContext().getResource("").getPath();
+         System.out.println("path::::"+ path);
+         copyfile(part,path);
+         //转发至当前页
+         request.getRequestDispatcher("WEB-INF/jsppc/addExamFile.jsp").forward(request, response);
+         
      
 	}
 	
-	  public void copyfile(Part part ){
+	  public void copyfile(Part part ,String path){
 		    InputStream is;
 			try {
 				is = part.getInputStream();
 				 String filename = new String(getFilename(part).getBytes(), "UTF-8");  
-		         File file = new File("/home/cuizehui/下载/exams_download");  
+		         File file = new File(path+"/file");  
 		         if (!file.exists() || !file.isDirectory()) {  
 		             file.mkdir();  
 		         }  
@@ -116,6 +121,6 @@ public class AddExamFileSlt extends HttpServlet {
 	        return null;  
 	    }  
 
-	  
+	 
 
 }

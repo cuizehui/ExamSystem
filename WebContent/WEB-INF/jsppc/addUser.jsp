@@ -22,10 +22,12 @@ import="com.alibaba.fastjson.JSONObject"
 
 <div  class="rightinfo">
 
-<form action="InsertSlt" method="GET">
+<form action="InsertSlt" method="GET"  >
 <div>
 <ul>
 		<li>
+			 <input type="hidden" name="fromtype"  value="web">
+			 
 工  号：<input type="text" name="jobnumber">
 			
 		</li>
